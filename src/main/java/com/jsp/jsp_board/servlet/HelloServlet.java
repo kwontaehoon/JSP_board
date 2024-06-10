@@ -1,4 +1,4 @@
-package com.jsp.jsp_board;
+package com.jsp.jsp_board.servlet;
 
 import java.io.*;
 import javax.servlet.http.*;
