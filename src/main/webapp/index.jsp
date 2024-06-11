@@ -7,6 +7,26 @@
     <title>JSP - Hello World</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#loadData").click(function () {
+                $.ajax({
+                    url: 'https://www.tongtongball.com/api/search/recommend/list',
+                    method: 'GET',
+                    dataType: 'json',
+                    success: function (data) {
+                        var jsonData = JSON.stringify(data);
+                        $("#dataList").text(jsonData);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("AJAX Error: ", status, error);
+                    }
+                });
+            });
+        });
+
+    </script>
     <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
@@ -34,18 +54,13 @@
 <jsp:include page="component/main/index.jsp" />
 
 <h1>API 조회 결과</h1>
-<ul>
-    <%
-        List<TestDTO> dataList = (List<TestDTO>) request.getAttribute("dataList");
-        if(dataList != null) {
-            for(TestDTO data : dataList) {
-    %>
-    <li><%= data.getValue() %></li> <!-- 여기서 getValue()는 데이터에서 실제 값을 가져오는 메서드입니다. -->
-    <%
-            }
-        }
-    %>
-</ul>
+<button id="loadData">Load Data</button>
+<ul id="dataList"></ul>
+
+<h1>API에서 가져온 데이터</h1>
+<div>
+    <%= request.getAttribute("jsonData") %>
+</div>
 
 </body>
 </html>

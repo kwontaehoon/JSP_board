@@ -1,4 +1,5 @@
-<%--
+<%@ page import="com.jsp.jsp_board.DTO.TestDTO" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: ZPOG9-002
   Date: 2024-06-10
