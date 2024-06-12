@@ -12,12 +12,19 @@
 </head>
 <body>
     <div class="h-[300px] border">
-        <div class="flex justify-around p-3">
-            <div>#</div>
-            <div>제목</div>
-            <div>닉네임</div>
-            <div>날짜</div>
+        <div class="flex text-center py-3">
+            <div class="w-1/4">#</div>
+            <div class="w-1/4">제목</div>
+            <div class="w-1/4">닉네임</div>
+            <div class="w-1/4">날짜</div>
         </div>
+        <div class="border-b flex py-3 text-center bg-[#AOAOAO]">
+            <div class="w-1/4">#</div>
+            <div class="w-1/4">111</div>
+            <div class="w-1/4">22</div>
+            <div class="w-1/4">33333</div>
+        </div>
+        <div id="test"></div>
     </div>
 </body>
 </html>

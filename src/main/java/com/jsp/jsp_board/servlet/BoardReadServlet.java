@@ -43,7 +43,7 @@ public class BoardReadServlet extends HttpServlet {
         request.setAttribute("jsonData", jsonResponse.toString());
 
         // JSP로 포워딩
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/test.jsp");
         dispatcher.forward(request, response);
     }
 }

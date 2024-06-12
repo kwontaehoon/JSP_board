@@ -8,23 +8,8 @@
 
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="assets/js/script.js"></script>
     <script>
-        $(document).ready(function () {
-            $("#loadData").click(function () {
-                $.ajax({
-                    url: 'https://www.tongtongball.com/api/search/recommend/list',
-                    method: 'GET',
-                    dataType: 'json',
-                    success: function (data) {
-                        var jsonData = JSON.stringify(data);
-                        $("#dataList").text(jsonData);
-                    },
-                    error: function (xhr, status, error) {
-                        console.error("AJAX Error: ", status, error);
-                    }
-                });
-            });
-        });
 
     </script>
     <link rel="stylesheet" href="assets/css/styles.css">
