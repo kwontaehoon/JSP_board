@@ -25,8 +25,8 @@ $(document).ready(function () {
             var dataList = $("#test");
 
             $.each(data, function (index, item) {
-                // 여기서 item의 속성에 맞게 값을 가져옵니다. 예를 들어 item.value를 사용합니다.
-                var listItem = $("<div>{item}</div>").text(item.content);
+                console.log(item);
+                var listItem = $("<div class='text-3xl'></div>").text(item.content);
                 dataList.append(listItem);
             });
         },
