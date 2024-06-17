@@ -1,14 +1,14 @@
 package com.jsp.jsp_board.DTO;
 
 public class TestDTO {
-    private Number searchId;
+    private int searchId;
     private String content;
 
-    public Number getSearchId() {
+    public int getSearchId() {
         return searchId;
     }
 
-    public void setSearchId(Number searchId) {
+    public void setSearchId(int searchId) {
         this.searchId = searchId;
     }
 

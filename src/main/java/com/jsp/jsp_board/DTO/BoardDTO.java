@@ -1,116 +1,78 @@
 package com.jsp.jsp_board.DTO;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
 
 public class BoardDTO {
-    private Number reservationId;
-    private String subTitle;
-    private Number peopleCount;
-    private String LocationDetails;
-    private Number score;
-    private LocalDateTime createDate;
-    private String deadLine;
-    private Float xCoordinate;
-    private Float yCoordinate;
-    private String category1;
-    private String category2;
-    private String category3;
+    private int boardId;
+    private String title;
+    private String content;
+    private String category;
+    private String subCategory;
+    private int hits;
+    private int recommend;
+    private Date createDate;
 
-    public Number getReservationId() {
-        return reservationId;
+    public int getBoardId() {
+        return boardId;
     }
 
-    public void setReservationId(Number reservationId) {
-        this.reservationId = reservationId;
+    public void setBoardId(int boardId) {
+        this.boardId = boardId;
     }
 
-    public String getSubTitle() {
-        return subTitle;
+    public String getTitle() {
+        return title;
     }
 
-    public void setSubTitle(String subTitle) {
-        this.subTitle = subTitle;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public Number getPeopleCount() {
-        return peopleCount;
+    public String getContent() {
+        return content;
     }
 
-    public void setPeopleCount(Number peopleCount) {
-        this.peopleCount = peopleCount;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public String getLocationDetails() {
-        return LocationDetails;
+    public String getCategory() {
+        return category;
     }
 
-    public void setLocationDetails(String locationDetails) {
-        LocationDetails = locationDetails;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public Number getScore() {
-        return score;
+    public String getSubCategory() {
+        return subCategory;
     }
 
-    public void setScore(Number score) {
-        this.score = score;
+    public void setSubCategory(String subCategory) {
+        this.subCategory = subCategory;
     }
 
-    public LocalDateTime getCreateDate() {
+    public int getHits() {
+        return hits;
+    }
+
+    public void setHits(int hits) {
+        this.hits = hits;
+    }
+
+    public int getRecommend() {
+        return recommend;
+    }
+
+    public void setRecommend(int recommend) {
+        this.recommend = recommend;
+    }
+
+    public Date getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(LocalDateTime createDate) {
+    public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
-
-    public String getDeadLine() {
-        return deadLine;
-    }
-
-    public void setDeadLine(String deadLine) {
-        this.deadLine = deadLine;
-    }
-
-    public Float getxCoordinate() {
-        return xCoordinate;
-    }
-
-    public void setxCoordinate(Float xCoordinate) {
-        this.xCoordinate = xCoordinate;
-    }
-
-    public Float getyCoordinate() {
-        return yCoordinate;
-    }
-
-    public void setyCoordinate(Float yCoordinate) {
-        this.yCoordinate = yCoordinate;
-    }
-
-    public String getCategory1() {
-        return category1;
-    }
-
-    public void setCategory1(String category1) {
-        this.category1 = category1;
-    }
-
-    public String getCategory2() {
-        return category2;
-    }
-
-    public void setCategory2(String category2) {
-        this.category2 = category2;
-    }
-
-    public String getCategory3() {
-        return category3;
-    }
-
-    public void setCategory3(String category3) {
-        this.category3 = category3;
-    }
 }
-
-

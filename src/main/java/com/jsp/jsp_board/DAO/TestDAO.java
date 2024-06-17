@@ -1,12 +1,8 @@
 package com.jsp.jsp_board.DAO;
 
-import com.jsp.jsp_board.DTO.BoardDTO;
 import com.jsp.jsp_board.DTO.TestDTO;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,11 +36,11 @@ public class TestDAO {
 
             while (rs.next()) {
                 TestDTO test = new TestDTO();
-                test.getSearchId(rs.getInt("searchId"));
-                test.getContent(rs.getString("content"));
+                test.setSearchId(rs.getInt("search_id"));
+                test.setContent(rs.getString("content"));
                 // 필요한 필드들을 추가로 설정
 
-                boardList.add(board);
+                boardList.add(test);
             }
         } catch (SQLException e) {
             e.printStackTrace();

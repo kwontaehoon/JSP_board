@@ -11,12 +11,15 @@
     <title>Title</title>
 </head>
 <body>
-    <div class="my-5 bg-[#FFB93D] p-5 font-bold text-lg">CRUD 게시판</div>
+    <div class="my-5 bg-[#FFB93D] flex px-5 items-center">
+        <div class="flex-1 font-bold text-xl">CRUD 게시판</div>
+        <img src="assets/images/banner-pengu.png" />
+    </div>
     <div class="my-5 flex">
         <%
             for(int i=0; i<3; i++){
         %>
-        <div class="p-3 bg-black text-white text-sm">인기 게시판</div>
+        <div class="p-3 bg-black text-white text-xs">인기 게시판</div>
         <%
             }
         %>
@@ -26,12 +29,12 @@
         <%
             for(int i=0; i<2; i++){
         %>
-        <div class="p-3 bg-[#DC3545] text-white text-sm">모든글</div>
+        <div class="p-3 bg-[#DC3545] text-white text-xs">모든글</div>
         <%
             }
         %>
         </div>
-        <div class="text-sm">로그인</div>
+        <div class="text-xs">로그인</div>
     </div>
 </body>
 </html>

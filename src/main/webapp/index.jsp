@@ -18,8 +18,8 @@
 <%--<h1><%= "Hello World!" %>--%>
 <%--</h1>--%>
 <%--<br/>--%>
-<a href="hello-servlet">Hello Servlet</a>
-<a href="boardRead-servlet2">boardRead Servlet</a>
+<%--<a href="hello-servlet">Hello Servlet</a>--%>
+<%--<a href="boardRead-servlet2">boardRead Servlet</a>--%>
 <%--<form action="signup" method="post">--%>
 <%--    <label for="name">Name:</label>--%>
 <%--    <input type="text" id="name" name="name">--%>
@@ -38,14 +38,7 @@
 <jsp:include page="component/header/index.jsp" />
 <jsp:include page="component/main/index.jsp" />
 
-<h1>API 조회 결과</h1>
-<button id="loadData">Load Data</button>
-<ul id="dataList"></ul>
-
-<h1>API에서 가져온 데이터</h1>
-<div>
-    <%= request.getAttribute("jsonData") %>
-</div>
+<a href="test-servlet">test Servlet</a>
 
 </body>
 </html>
