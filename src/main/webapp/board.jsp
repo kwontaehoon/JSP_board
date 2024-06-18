@@ -12,13 +12,6 @@
 </head>
 <body>
 <div>board sql</div>
-<%
-    while (boardData.next()) {
-        int id = boardData.getInt("id");
-        String title = boardData.getString("title");
-        String content = boardData.getString("content");
-        String author = boardData.getString("author");
-        String timestamp = boardData.getTimestamp("timestamp").toString();
-%>
+    <div>board</div>
 </body>
 </html>

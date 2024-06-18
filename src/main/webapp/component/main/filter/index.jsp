@@ -13,7 +13,7 @@
 <body>
     <div class="my-5 bg-[#FFB93D] flex px-5 items-center">
         <div class="flex-1 font-bold text-xl">CRUD 게시판</div>
-        <img src="assets/images/banner-pengu.png" />
+        <img src="assets/images/banner-pengu.png"/>
     </div>
     <div class="my-5 flex">
         <%

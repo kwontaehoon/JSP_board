@@ -13,8 +13,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "testServlet", value = "/test-servlet")
-public class TestServlet extends HttpServlet {
+@WebServlet("/t")
+public class    TestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
