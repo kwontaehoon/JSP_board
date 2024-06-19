@@ -12,15 +12,15 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "boardServlet", urlPatterns = {"/"})
+@WebServlet("/main")
 public class BoardServlet extends HttpServlet {
+    private static final String URL = "jdbc:mysql://database-tong.cnasam86gevz.ap-northeast-2.rds.amazonaws.com:3306/tong";
+    private static final String USER = "admin";
+    private static final String PASSWORD = "15689725";
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("BoardServlet doGet method called");
-
-        String url = "jdbc:mysql://database-tong.cnasam86gevz.ap-northeast-2.rds.amazonaws.com:3306/tong";
-        String user = "admin";
-        String password = "15689725";
+        List<BoardDTO> boardList = new ArrayList<>();
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -28,14 +28,9 @@ public class BoardServlet extends HttpServlet {
             throw new ServletException("MySQL JDBC Driver not found", e);
         }
 
-        Connection connection = null;
-        List<BoardDTO> boardList = new ArrayList<>();
-
-        try {
-            connection = DriverManager.getConnection(url, user, password);
-
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM board");
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             Statement statement = connection.createStatement();
+             ResultSet resultSet = statement.executeQuery("SELECT * FROM board")) {
 
             while (resultSet.next()) {
                 BoardDTO board = new BoardDTO();
@@ -50,19 +45,11 @@ public class BoardServlet extends HttpServlet {
                 boardList.add(board);
             }
 
-            request.setAttribute("boardData", boardList);
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
+            request.setAttribute("boardList", boardList);
+            request.getRequestDispatcher("/main.jsp").forward(request, response);
 
         } catch (SQLException e) {
-            System.out.println("Connection failed: " + e.getMessage());
-        } finally {
-            try {
-                if (connection != null) {
-                    connection.close();
-                }
-            } catch (SQLException e) {
-                System.out.println("Error closing connection: " + e.getMessage());
-            }
+            throw new ServletException("Failed to retrieve board data", e);
         }
     }
 }
