@@ -12,7 +12,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/main")
+@WebServlet(name = "board", value = "/main")
 public class BoardServlet extends HttpServlet {
     private static final String URL = "jdbc:mysql://database-tong.cnasam86gevz.ap-northeast-2.rds.amazonaws.com:3306/tong";
     private static final String USER = "admin";
@@ -28,9 +28,27 @@ public class BoardServlet extends HttpServlet {
             throw new ServletException("MySQL JDBC Driver not found", e);
         }
 
+        String query = "SELECT " +
+                "    b.board_id, " +
+                "    b.title, " +
+                "    b.content, " +
+                "    b.category, " +
+                "    b.sub_category, " +
+                "    b.hits, " +
+                "    b.recommend, " +
+                "    b.create_date, " +
+                "    u.user_id, " +
+                "    u.email, " +
+                "    u.nick_name, " +
+                "    u.name " +
+                "FROM " +
+                "    board b " +
+                "JOIN " +
+                "    users u ON b.user_id = u.user_id;";
+
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery("SELECT * FROM board")) {
+             ResultSet resultSet = statement.executeQuery(query)) {
 
             while (resultSet.next()) {
                 BoardDTO board = new BoardDTO();
@@ -42,6 +60,10 @@ public class BoardServlet extends HttpServlet {
                 board.setHits(resultSet.getInt("hits"));
                 board.setRecommend(resultSet.getInt("recommend"));
                 board.setCreateDate(resultSet.getDate("create_date"));
+                board.setUserId(resultSet.getInt("user_id"));
+                board.setEmail(resultSet.getString("email"));
+                board.setNickName(resultSet.getString("nick_name"));
+                board.setName(resultSet.getString("name"));
                 boardList.add(board);
             }
 
@@ -53,3 +75,4 @@ public class BoardServlet extends HttpServlet {
         }
     }
 }
+

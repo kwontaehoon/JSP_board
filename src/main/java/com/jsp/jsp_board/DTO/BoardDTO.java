@@ -8,13 +8,15 @@ public class BoardDTO {
     private String content;
     private String category;
     private String subCategory;
+    private String name;
+    private String nickName;
+    private String email;
+    private int userId;
     private int hits;
     private int recommend;
     private Date createDate;
 
-    public int getBoardId() {
-        return boardId;
-    }
+    public int getBoardId() { return boardId; }
 
     public void setBoardId(int boardId) {
         this.boardId = boardId;
@@ -24,9 +26,7 @@ public class BoardDTO {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+    public void setTitle(String title) { this.title = title; }
 
     public String getContent() {
         return content;
@@ -51,6 +51,22 @@ public class BoardDTO {
     public void setSubCategory(String subCategory) {
         this.subCategory = subCategory;
     }
+
+    public String getName() { return name; }
+
+    public void setName(String name) { this.name = name; }
+
+    public String getNickName() { return nickName; }
+
+    public void setNickName(String nickName) { this.nickName = nickName; }
+
+    public String getEmail() { return email; }
+
+    public void setEmail(String email) {this.email = email; }
+
+    public int getUserId() { return userId; }
+
+    public void setUserId(int userId) { this.userId = userId; }
 
     public int getHits() {
         return hits;

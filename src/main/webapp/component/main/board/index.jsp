@@ -13,24 +13,19 @@
 </head>
 <body>
     <div class="h-[300px] border">
-        <div class="flex text-center py-3">
+        <div class="flex text-center py-3 text-xs md:text-sm">
             <div class="w-1/4">#</div>
             <div class="w-1/4">제목</div>
             <div class="w-1/4">닉네임</div>
             <div class="w-1/4">날짜</div>
         </div>
-        <div class="border-b flex py-3 text-center bg-[#AOAOAO]">
-            <div class="w-1/4">#</div>
-            <div class="w-1/4">111</div>
-            <div class="w-1/4">22</div>
-            <div class="w-1/4">33333</div>
-        </div>
-<%--        <div id="test"></div>--%>
-        <c:forEach var="item" items="${boardData}">
-            <tr>
-                <td>${item.boardId}</td>
-                <td>${item.content}</td>
-            </tr>
+        <c:forEach var="item" items="${boardList}">
+            <div class="border-b flex py-3 text-center bg-[#AOAOAO] text-xs md:text-sm">
+                <div class="w-1/4">${item.boardId}</div>
+                <div class="w-1/4">${item.content}</div>
+                <div class="w-1/4">${item.name}</div>
+                <div class="w-1/4">${item.createDate}</div>
+            </div>
         </c:forEach>
     </div>
 </body>

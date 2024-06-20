@@ -51,7 +51,7 @@ public class    TestServlet extends HttpServlet {
 
             // 데이터를 request에 설정하여 JSP 페이지로 전달
             request.setAttribute("testData", testList);
-            request.getRequestDispatcher("test.jsp").forward(request, response);
+            request.getRequestDispatcher("/test.jsp").forward(request, response);
 
         } catch (SQLException e) {
             System.out.println("Connection failed: " + e.getMessage());

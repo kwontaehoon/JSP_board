@@ -8,6 +8,6 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-    <A href="main.jsp">게시판 들어가기</A>
+    <a href="/main">게시판 들어가기</a>
 </body>
 </html>
