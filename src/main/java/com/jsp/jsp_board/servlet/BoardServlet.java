@@ -14,6 +14,7 @@ import java.util.List;
 
 @WebServlet(name = "board", value = "/main")
 public class BoardServlet extends HttpServlet {
+
     private static final String URL = "jdbc:mysql://database-tong.cnasam86gevz.ap-northeast-2.rds.amazonaws.com:3306/tong";
     private static final String USER = "admin";
     private static final String PASSWORD = "15689725";
