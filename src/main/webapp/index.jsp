@@ -9,5 +9,7 @@
 </head>
 <body>
     <a href="/main">게시판 들어가기</a>
+    <a href="/t">test</a>
+    <a href="/hello-servlet">aaa</a>
 </body>
 </html>

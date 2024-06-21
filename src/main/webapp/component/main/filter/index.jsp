@@ -34,7 +34,7 @@
             }
         %>
         </div>
-        <a href="/login" class="text-xs bg-green-500 rounded px-2 py-1 text-white">로그인</a>
+        <a href="/component/account" class="text-xs bg-green-500 rounded px-2 py-1 text-white">로그인</a>
     </div>
 </body>
 </html>
