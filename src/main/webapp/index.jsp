@@ -6,10 +6,31 @@
 <html>
 <head>
     <title>JSP - Hello World</title>
+
+<%--    script 태그는 닫는 태그가 꼭 필요--%>
+    <script src="/assets/js/testFunc.js"></script>
+
+
+    <script>
+
+        console.log(123);
+
+        window.onload = function() {
+            const result = testFunc(); // testFunc 함수를 호출
+            const resultDiv = document.getElementById('result');
+            resultDiv.textContent = result; // 결과를 div에 출력
+        };
+
+        function test() {
+            alert('테스트 버튼 클릭');
+        }
+    </script>
 </head>
 <body>
     <a href="/main">게시판 들어가기</a>
     <a href="/t">test</a>
     <a href="/hello-servlet">aaa</a>
+    <input type="button" onclick="test();" value="테스트"/>
+    <div id="result"></div>
 </body>
 </html>
