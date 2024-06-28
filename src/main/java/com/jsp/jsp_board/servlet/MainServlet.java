@@ -1,6 +1,8 @@
 package com.jsp.jsp_board.servlet;
 
+import com.jsp.jsp_board.DBConnect;
 import com.jsp.jsp_board.DTO.BoardDTO;
+import com.jsp.jsp_board.DTO.TestDTO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,19 +17,15 @@ import java.util.List;
 @WebServlet(name = "mainServlet", value = "/main")
 public class MainServlet extends HttpServlet {
 
-    private static final String URL = "jdbc:mysql://database-tong.cnasam86gevz.ap-northeast-2.rds.amazonaws.com:3306/tong";
-    private static final String USER = "admin";
-    private static final String PASSWORD = "15689725";
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<BoardDTO> boardList = new ArrayList<>();
 
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new ServletException("MySQL JDBC Driver not found", e);
-        }
+        System.out.println("BoardServlet");
+
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        List<BoardDTO> boardList = new ArrayList<>();
 
         String query = "SELECT " +
                 "    b.board_id, " +
@@ -47,33 +45,44 @@ public class MainServlet extends HttpServlet {
                 "JOIN " +
                 "    users u ON b.user_id = u.user_id;";
 
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             Statement statement = connection.createStatement();
-             ResultSet resultSet = statement.executeQuery(query)) {
+        try {
+            conn = DBConnect.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
 
-            while (resultSet.next()) {
+            // 결과 데이터를 TestDTO 객체 리스트로 변환
+            while (rs.next()) {
                 BoardDTO board = new BoardDTO();
-                board.setBoardId(resultSet.getInt("board_id"));
-                board.setTitle(resultSet.getString("title"));
-                board.setContent(resultSet.getString("content"));
-                board.setCategory(resultSet.getString("category"));
-                board.setSubCategory(resultSet.getString("sub_category"));
-                board.setHits(resultSet.getInt("hits"));
-                board.setRecommend(resultSet.getInt("recommend"));
-                board.setCreateDate(resultSet.getDate("create_date"));
-                board.setUserId(resultSet.getInt("user_id"));
-                board.setEmail(resultSet.getString("email"));
-                board.setNickName(resultSet.getString("nick_name"));
-                board.setName(resultSet.getString("name"));
+                board.setBoardId(rs.getInt("board_id"));
+                board.setTitle(rs.getString("title"));
+                board.setContent(rs.getString("content"));
+                board.setCategory(rs.getString("category"));
+                board.setSubCategory(rs.getString("sub_category"));
+                board.setHits(rs.getInt("hits"));
+                board.setRecommend(rs.getInt("recommend"));
+                board.setCreateDate(rs.getDate("create_date"));
+                board.setUserId(rs.getInt("user_id"));
+                board.setEmail(rs.getString("email"));
+                board.setNickName(rs.getString("nick_name"));
+                board.setName(rs.getString("name"));
                 boardList.add(board);
             }
 
+        } catch (SQLException e) {
+            System.out.println("Connection failed: " + e.getMessage());
+        } finally {
+            // 연결 종료
+            try {
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (conn != null) conn.close();
+            } catch (SQLException e) {
+                System.out.println("Error closing connection: " + e.getMessage());
+            }
+        }
+
             request.setAttribute("boardList", boardList);
             request.getRequestDispatcher("/main.jsp").forward(request, response);
-
-        } catch (SQLException e) {
-            throw new ServletException("Failed to retrieve board data", e);
-        }
     }
 }
 

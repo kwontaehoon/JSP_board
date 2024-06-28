@@ -11,6 +11,16 @@
     <title>Title</title>
 </head>
 <body>
+
+    <%
+        Boolean sessionFlag = (Boolean) session.getAttribute("login");
+        if (sessionFlag == null) {
+            System.out.println("sessionFlag is null");
+        } else {
+            System.out.println("sessionFlag = " + sessionFlag);
+        }
+    %>
+
     <div class="my-5 bg-[#FFB93D] flex px-5 items-center">
         <div class="flex-1 font-bold text-xl">JSP 게시판</div>
         <img src="assets/images/banner-pengu.png"/>
@@ -34,7 +44,17 @@
             }
         %>
         </div>
-        <a href="/component/account" class="text-xs bg-green-500 rounded px-2 py-1 text-white">로그인</a>
+        <%
+            if (sessionFlag == null) {
+        %>
+            <a href="/component/account" class="text-xs bg-green-500 rounded px-2 py-1 text-white">로그인</a>
+        <%
+        } else {
+        %>
+            <div class="text-green-500">글쓰기.</div>
+        <%
+            }
+        %>
     </div>
 </body>
 </html>

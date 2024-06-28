@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="h-[300px] border">
-        <div class="flex text-center py-3 text-xs md:text-sm">
+        <div class="flex text-center py-3 text-xs md:text-sm border-b">
             <div class="w-1/4">#</div>
             <div class="w-1/4">제목</div>
             <div class="w-1/4">닉네임</div>

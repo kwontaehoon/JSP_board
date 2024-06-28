@@ -1,7 +1,7 @@
 package com.jsp.jsp_board.servlet;
 
+import com.jsp.jsp_board.DBConnect;
 import com.jsp.jsp_board.DTO.TestDTO;
-import org.apache.commons.dbcp2.BasicDataSource;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,38 +14,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet("/t")
-public class    TestServlet extends HttpServlet {
+public class TestServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "jdbc:mysql://database-tong.cnasam86gevz.ap-northeast-2.rds.amazonaws.com:3306/tong";
-        String user = "admin";
-        String password = "15689725";
+        System.out.println("TestServlet");
 
-        // MySQL JDBC 드라이버 로드
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new ServletException("MySQL JDBC Driver not found", e);
-        }
-
-        Connection connection = null;
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
         List<TestDTO> testList = new ArrayList<>();
 
+        String query = "SELECT * FROM search";
+
         try {
-            // 데이터베이스 연결
-            connection = DriverManager.getConnection(url, user, password);
-            System.out.println("Connected to the database test getmethod");
+            conn = DBConnect.getConnection();
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
 
-            // 'board' 테이블 데이터 조회
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM search");
-
-            // 결과 데이터를 Board 객체 리스트로 변환
-            while (resultSet.next()) {
+            // 결과 데이터를 TestDTO 객체 리스트로 변환
+            while (rs.next()) {
                 TestDTO test = new TestDTO();
-                test.setSearchId(resultSet.getInt("search_id"));
-                test.setContent(resultSet.getString("content"));
+                test.setSearchId(rs.getInt("search_id"));
+                test.setContent(rs.getString("content"));
                 testList.add(test);
             }
 
@@ -58,9 +49,9 @@ public class    TestServlet extends HttpServlet {
         } finally {
             // 연결 종료
             try {
-                if (connection != null) {
-                    connection.close();
-                }
+                if (rs != null) rs.close();
+                if (ps != null) ps.close();
+                if (conn != null) conn.close();
             } catch (SQLException e) {
                 System.out.println("Error closing connection: " + e.getMessage());
             }
@@ -70,27 +61,16 @@ public class    TestServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String url = "jdbc:mysql://database-tong.cnasam86gevz.ap-northeast-2.rds.amazonaws.com:3306/tong";
-        String user = "admin";
-        String password = "15689725";
-
         String userId = request.getParameter("id");
         String userPassword = request.getParameter("password");
 
         System.out.println("ddddd userId userPassword: " + userId + userPassword);
 
-        // MySQL JDBC 드라이버 로드
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new ServletException("MySQL JDBC Driver not found", e);
-        }
-
-        Connection connection = null;
+        Connection conn = null;
+        PreparedStatement ps = null;
 
         try {
-            // 데이터베이스 연결
-            connection = DriverManager.getConnection(url, user, password);
+            conn = DBConnect.getConnection();
             System.out.println("Connected to the database test postmethod");
 
             // 현재 날짜 가져오기
@@ -99,18 +79,18 @@ public class    TestServlet extends HttpServlet {
 
             // 'board' 테이블에 데이터 삽입
             String insertSQL = "INSERT INTO `board` (comment_count, hits, recommend, create_date, user_id, category, content, title, sub_category) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement preparedStatement = connection.prepareStatement(insertSQL);
-            preparedStatement.setInt(1, 3);
-            preparedStatement.setInt(2, 1);
-            preparedStatement.setInt(3, 1);
-            preparedStatement.setDate(4, sqlDate);
-            preparedStatement.setInt(5, 2);
-            preparedStatement.setString(6, "test");
-            preparedStatement.setString(7, "test_content");
-            preparedStatement.setString(8, "test_title");
-            preparedStatement.setString(9, "test");
+            ps = conn.prepareStatement(insertSQL);
+            ps.setInt(1, 3);
+            ps.setInt(2, 1);
+            ps.setInt(3, 1);
+            ps.setDate(4, sqlDate);
+            ps.setInt(5, 2);
+            ps.setString(6, "test");
+            ps.setString(7, "test_content");
+            ps.setString(8, "test_title");
+            ps.setString(9, "test");
 
-            int rowsInserted = preparedStatement.executeUpdate();
+            int rowsInserted = ps.executeUpdate();
             if (rowsInserted > 0) {
                 System.out.println("A new row was inserted successfully!");
             }
@@ -123,9 +103,8 @@ public class    TestServlet extends HttpServlet {
         } finally {
             // 연결 종료
             try {
-                if (connection != null) {
-                    connection.close();
-                }
+                if (ps != null) ps.close();
+                if (conn != null) conn.close();
             } catch (SQLException e) {
                 System.out.println("Error closing connection: " + e.getMessage());
             }
