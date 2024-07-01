@@ -50,7 +50,11 @@ public class EmailLoginServlet extends HttpServlet {
                     System.out.println("로그인됨");
                     session.setAttribute("login", true);
                 } else {
-                    request.setAttribute("loginError", "error");
+                    if(hashedId.equals(userId)) {
+                        request.setAttribute("loginError", "id");
+                    }else {
+                        request.setAttribute("loginError", "password");
+                    }
                     session.removeAttribute("login");
                     request.getRequestDispatcher(request.getContextPath() + "/component/account/emailLogin/index.jsp").forward(request, response);
                 }
