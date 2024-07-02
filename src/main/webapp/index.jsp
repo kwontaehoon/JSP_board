@@ -1,5 +1,6 @@
 <%@ page import="com.jsp.jsp_board.DTO.BoardDTO" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.jsp.jsp_board.utill.Test" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -42,5 +43,10 @@
     <div class="m-2" id="result"></div>
     <div class="m-2"><%=a %></div>
     <div class="m-2"><a href="/" class="text-blue border">들어가기</a></div>
+
+    <%
+        String error = Test.main("ttttt");
+    %>
+    <div><%= error%> %</div>
 </body>
 </html>

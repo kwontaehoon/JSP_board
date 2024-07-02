@@ -47,11 +47,11 @@
         <%
             if (sessionFlag == null) {
         %>
-            <a href="/component/account" class="text-xs bg-green-500 rounded px-2 py-1 text-white">로그인</a>
+            <a href="/component/account" class="text-xs bg-green-500 rounded px-2 py-1 text-white cursor-pointer">로그인</a>
         <%
         } else {
         %>
-            <div class="text-green-500">글쓰기.</div>
+            <a href="./component/write/index.jsp" class="text-xs bg-green-500 rounded px-2 py-1 text-white cursor-pointer">글쓰기</a>
         <%
             }
         %>

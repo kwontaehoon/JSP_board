@@ -13,7 +13,7 @@
 </head>
 <body>
     <jsp:include page="/component/main/search/index.jsp" />
-    <div class="md:px-40 px-20">
+    <div class="md:px-40 px-20 py-12">
         <jsp:include page="/component/main/filter/index.jsp" />
         <jsp:include page="/component/main/board/index.jsp" />
     </div>

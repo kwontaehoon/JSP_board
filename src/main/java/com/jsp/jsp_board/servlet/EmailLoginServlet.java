@@ -49,10 +49,11 @@ public class EmailLoginServlet extends HttpServlet {
                 if (BCrypt.checkPassword(userPassword, hashedPassword) && hashedId.equals(userId)) {
                     System.out.println("로그인됨");
                     session.setAttribute("login", true);
+                    response.sendRedirect("/main");
                 } else {
-                    if(hashedId.equals(userId)) {
+                    if(!hashedId.equals(userId)) {
                         request.setAttribute("loginError", "id");
-                    }else {
+                    }else  {
                         request.setAttribute("loginError", "password");
                     }
                     session.removeAttribute("login");

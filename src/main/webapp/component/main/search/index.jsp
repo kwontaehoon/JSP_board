@@ -9,6 +9,8 @@
 <html>
 <head>
     <title>Title</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
         <div class="flex py-2 px-8 bg-[#363944]">
