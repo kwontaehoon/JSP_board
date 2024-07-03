@@ -12,7 +12,6 @@ public class TestDAO {
     private PreparedStatement pstmt;
     private ResultSet rs;
 
-    // MySQL 연결 설정 (실제 환경에 맞게 수정 필요)
     private static final String DB_URL = "jdbc:mysql://localhost:3306/database-tong.cnasam86gevz.ap-northeast-2.rds.amazonaws.com";
     private static final String DB_USER = "admin";
     private static final String DB_PASSWORD = "15689725";

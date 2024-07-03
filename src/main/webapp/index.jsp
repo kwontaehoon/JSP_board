@@ -43,6 +43,9 @@
     <div class="m-2" id="result"></div>
     <div class="m-2"><%=a %></div>
     <div class="m-2"><a href="/" class="text-blue border">들어가기</a></div>
+    <form method="post" action="/boardWrite">
+        <input value="글쓰기 테스트" type="submit" />
+    </form>
 
     <%
         String error = Test.main("ttttt");
